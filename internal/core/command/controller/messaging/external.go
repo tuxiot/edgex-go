@@ -38,11 +38,20 @@ func OnConnectHandler(requestTimeout time.Duration, dic *di.Container) mqtt.OnCo
 			lc.Debugf("Subscribed to topic '%s' on external MQTT broker", requestQueryTopic)
 		}
 
-		requestCommandTopic := externalTopics[common.CommandRequestTopicKey]
-		if token := client.Subscribe(requestCommandTopic, qos, commandRequestHandler(requestTimeout, dic)); token.Wait() && token.Error() != nil {
-			lc.Errorf("could not subscribe to topic '%s': %s", requestCommandTopic, token.Error().Error())
+		requestCommandTopics := externalTopics[common.CommandRequestTopicKey]
+		topicList := strings.Split(requestCommandTopics, ",")
+		topicFilters := make(map[string]byte)
+		for _, topic := range topicList {
+			topic = strings.TrimSpace(topic)
+			if topic != "" {
+				topicFilters[topic] = qos
+			}
+		}
+
+		if token := client.SubscribeMultiple(topicFilters, commandRequestHandler(requestTimeout, dic)); token.Wait() && token.Error() != nil {
+			lc.Errorf("could not subscribe to topics: %s", token.Error().Error())
 		} else {
-			lc.Debugf("Subscribed to topic '%s' on external MQTT broker", requestCommandTopic)
+			lc.Debugf("Subscribed to %d topics on external MQTT broker with QoS %d", len(topicFilters), qos)
 		}
 	}
 }
