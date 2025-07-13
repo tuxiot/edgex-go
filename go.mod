@@ -2,6 +2,8 @@ module github.com/edgexfoundry/edgex-go
 
 go 1.21
 
+replace github.com/edgexfoundry/go-mod-messaging/v3 => github.com/tuxiot/go-mod-messaging/v3 v3.1.2
+
 require (
 	github.com/eclipse/paho.mqtt.golang v1.4.3
 	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.1.0

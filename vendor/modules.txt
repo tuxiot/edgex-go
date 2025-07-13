@@ -56,7 +56,7 @@ github.com/edgexfoundry/go-mod-core-contracts/v3/dtos/requests
 github.com/edgexfoundry/go-mod-core-contracts/v3/dtos/responses
 github.com/edgexfoundry/go-mod-core-contracts/v3/errors
 github.com/edgexfoundry/go-mod-core-contracts/v3/models
-# github.com/edgexfoundry/go-mod-messaging/v3 v3.1.0
+# github.com/edgexfoundry/go-mod-messaging/v3 v3.1.0 => github.com/tuxiot/go-mod-messaging/v3 v3.1.2
 ## explicit; go 1.21
 github.com/edgexfoundry/go-mod-messaging/v3/clients
 github.com/edgexfoundry/go-mod-messaging/v3/internal/pkg
@@ -434,3 +434,4 @@ gopkg.in/eapache/queue.v1
 # gopkg.in/yaml.v3 v3.0.1
 ## explicit
 gopkg.in/yaml.v3
+# github.com/edgexfoundry/go-mod-messaging/v3 => github.com/tuxiot/go-mod-messaging/v3 v3.1.2
